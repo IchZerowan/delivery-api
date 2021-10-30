@@ -1,13 +1,13 @@
 # Delivery Api "MrsAm"
 
-Delivery API created for helping delivering food between some systems (server and your web application, your mobile app))
+Delivery API created for Chernihiv.It october 2021 olympiad 
 
 - Has a lot web methods
 - Supports MySQL db
 
 ## Methods description 
 ### Get companies
-GET method returns for you list of all companies
+GET method returns the list of all the companies
 
 **Request**
 ```
@@ -19,12 +19,12 @@ http://server:80/api/companies
    {
       "id":1,
       "name":"Da!Bro",
-      "description":"ресторан"
+      "description":"СЂРµСЃС‚РѕСЂР°РЅ"
    }
 ]
 ```
 ### Get company by id
-GET method returns for you information for company with your id,  *honey*
+GET method returns the information for the company with specified id
 
 **Request**
 ```
@@ -36,13 +36,13 @@ http://server:80/api/companies?company_id=1
    {
       "id":1,
       "name":"Da!Bro",
-      "description":"ресторан"
+      "description":"СЂРµСЃС‚РѕСЂР°РЅ"
    }
 ]
 ```
 
 ### Get categories
-GET method returns for you all categories for your company ID
+GET method returns all the categories by the specified company ID
 
 **Request**
 ```
@@ -59,7 +59,7 @@ http://server:80/api/categories?company_id=1
 ```
 
 ### Get category info by ID
-GET method returns for you info about your category 
+GET method returns the information about the specified category 
 
 **Request**
 ```
@@ -74,7 +74,7 @@ http://server:80/api/categories/1
 ```
 
 ### Get dish by category ID
-GET method returns for you all dished for your category ID
+GET method returns all dished for the specified category ID
 
 **Request**
 ```
@@ -94,7 +94,7 @@ http://server:80/api/dishes?category_id=1
 ```
 
 ### Get dish by ID
-GET method returns for you all dished for your category ID
+GET method returns all dished for the specified ID
 
 **Request**
 ```
@@ -171,7 +171,7 @@ http://server:80/api/orders
 ```
 
 ### Get order by ID 
-GET method returns for you info about your order
+GET method returns the information about the specified order
 **Request**
 ```
 http://server:80/api/orders/1
@@ -179,7 +179,36 @@ http://server:80/api/orders/1
 
 **Response**
 ```json
-{"id":1,"amount":100.0,"phoneNumber":"+380999999999","clientName":"Ihor","dishes":[]}
+{
+    "id": 1,
+    "total": 220.0,
+    "phoneNumber": "+380999999999",
+    "clientName": "Ihor",
+    "dishes": [
+        {
+            "dish": {
+                "id": 2,
+                "name": "Margherita",
+                "image": "margherita.jpg",
+                "description": "Cheese Pizza",
+                "price": 70.0
+            },
+            "price": 70.0,
+            "count": 2
+        },
+        {
+            "dish": {
+                "id": 3,
+                "name": "Hawaii",
+                "image": "hawaii.jpg",
+                "description": "Hawaii Pizza",
+                "price": 80.0
+            },
+            "price": 80.0,
+            "count": 1
+        }
+    ]
+}
 ```
 
 ## HOW TO DEPLOY
@@ -188,9 +217,9 @@ http://server:80/api/orders/1
 
 * First, clone repo to your server 
 ``` git clone https://github.com/IchZerowan/delivery-api ```
-* Then, you must check enviroment
-    * Check java jre ```java -version``` must be 11 version
-    * Check java jdk ```javac -version``` must be 11 version (or higher, mabe, i dont know rly)
+* Than, you must check enviroment
+    * Check java jre ```java -version```, must be 11 version
+    * Check java jdk ```javac -version```, must be 11 version (or higher, maybe, i dont know rly)
     * Check mysql ```mysql -v``` must BE
     * Check maven
     * Check application.properties in project by path
@@ -207,8 +236,8 @@ http://server:80/api/orders/1
         SHOW DATABASES;
         SELECT user FROM mysql.user;
     ```
-    If you enough cool and all are correct - then build and start project
-* Third - build your project
+    If you are cool enough and everything is correct - build and start the project
+* Third, build your project
     *   Go to your project folder
     *   Build by command ``` mvn package -DskipTests ```
     *   Run from target by commands
