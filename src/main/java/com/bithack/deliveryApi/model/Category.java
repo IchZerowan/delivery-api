@@ -1,5 +1,8 @@
 package com.bithack.deliveryApi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,12 +15,14 @@ public class Category {
 
     @ManyToOne
     @JoinColumn(name = "company_id")
+    @JsonIgnore
     private Company company;
 
     public Category(){}
 
-    public Category(String name){
+    public Category(String name, Company company){
         this.name = name;
+        this.company = company;
     }
 
     public Long getId() {
@@ -34,5 +39,13 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 }

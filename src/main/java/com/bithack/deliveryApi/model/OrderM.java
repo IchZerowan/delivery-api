@@ -6,21 +6,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Order {
+public class OrderM {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
     private int orderNumber;
-    private int sum;
+    private int amount;
     private String phoneNumber;
     private String clientName;
 
-    public Order(){}
+    public OrderM(){}
 
-    public Order(int orderNumber, int sum, String phoneNumber, String clientName){
+    public OrderM(int orderNumber, int sum, String phoneNumber, String clientName){
         this.orderNumber = orderNumber;
-        this.sum = sum;
+        this.amount = sum;
         this.phoneNumber = phoneNumber;
         this.clientName = clientName;
     }
@@ -33,20 +33,20 @@ public class Order {
         this.clientName = clientName;
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public int getSum() {
-        return sum;
-    }
-
-    public void setSum(int sum) {
-        this.sum = sum;
     }
 
     public int getOrderNumber() {

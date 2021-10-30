@@ -1,9 +1,8 @@
 package com.bithack.deliveryApi.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 
 @Entity
 public class Dish {
@@ -16,13 +15,19 @@ public class Dish {
     private String description;
     private Double price;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    @JsonIgnore
+    private Category category;
+
     public Dish() { }
 
-    public Dish(String name, String image, String description, Double price) {
+    public Dish(String name, String image, String description, Double price, Category category) {
         this.name = name;
         this.image = image;
         this.description = description;
         this.price = price;
+        this.category = category;
     }
 
     public Long getId() {
@@ -63,5 +68,13 @@ public class Dish {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
