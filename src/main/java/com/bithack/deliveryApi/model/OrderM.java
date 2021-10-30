@@ -11,7 +11,7 @@ public class OrderM {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
-    private double amount;
+    private double total;
     private String phoneNumber;
     private String clientName;
 
@@ -21,8 +21,8 @@ public class OrderM {
 
     public OrderM(){}
 
-    public OrderM(double sum, String phoneNumber, String clientName){
-        this.amount = sum;
+    public OrderM(double total, String phoneNumber, String clientName){
+        this.total = total;
         this.phoneNumber = phoneNumber;
         this.clientName = clientName;
     }
@@ -33,14 +33,6 @@ public class OrderM {
 
     public void setClientName(String clientName) {
         this.clientName = clientName;
-    }
-
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
     }
 
     public String getPhoneNumber() {
@@ -65,5 +57,13 @@ public class OrderM {
 
     public void setDishes(List<OrderDish> dishes) {
         this.dishes = dishes;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 }

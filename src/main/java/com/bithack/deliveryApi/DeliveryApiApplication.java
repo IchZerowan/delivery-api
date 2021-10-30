@@ -57,6 +57,9 @@ public class DeliveryApiApplication {
 			Dish dish2 = new Dish("Margherita", "margherita.jpg", "Cheese Pizza", 70d, category2);
 			dishRepository.save(dish2);
 
+			Dish dish3 = new Dish("Hawaii", "hawaii.jpg", "Hawaii Pizza", 80d, category2);
+			dishRepository.save(dish3);
+
 //			OrderM orderM = new OrderM(100d, "+380999999999", "Ihor");
 //			orderRepository.save(orderM);
 		};

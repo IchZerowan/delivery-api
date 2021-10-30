@@ -28,6 +28,10 @@ public class OrderDish {
         this.count = count;
     }
 
+    public Dish getDish() {
+        return dish;
+    }
+
     public double getPrice() {
         return price;
     }
