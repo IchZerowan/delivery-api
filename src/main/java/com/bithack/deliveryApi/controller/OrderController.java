@@ -1,8 +1,7 @@
 package com.bithack.deliveryApi.controller;
 
-import com.bithack.deliveryApi.dao.EmptyOrderException;
-import com.bithack.deliveryApi.dao.ObjectNotFoundException;
-import com.bithack.deliveryApi.dao.OrderRepository;
+import com.bithack.deliveryApi.dao.*;
+import com.bithack.deliveryApi.model.Dish;
 import com.bithack.deliveryApi.model.OrderDishDto;
 import com.bithack.deliveryApi.model.OrderDto;
 import com.bithack.deliveryApi.model.OrderM;
@@ -18,6 +17,9 @@ public class OrderController {
     @Autowired
     private OrderRepository repository;
 
+    @Autowired
+    private DishRepository dishRepository;
+
     @GetMapping("/{id}")
     OrderM getOne(@PathVariable Long id) {
         return repository.findById(id)
@@ -31,8 +33,19 @@ public class OrderController {
             throw new EmptyOrderException();
         }
 
-        for(OrderDishDto dish: orderDto.getDishes()){
+        // Check single company is selected
+        Long companyId = 0L;
 
+        for(OrderDishDto dish: orderDto.getDishes()){
+            Dish dishModel = dishRepository.findById(dish.getDishId())
+                    .orElseThrow(() -> new ObjectNotFoundException(Dish.class, dish.getDishId()));
+
+            Long dishCompanyId = dishModel.getCategory().getCompany().getId();
+            if(companyId.equals(0L) || dishCompanyId.equals(companyId)){
+                companyId = dishCompanyId;
+            } else {
+                throw new DifferentCompaniesException(companyId, dishCompanyId);
+            }
         }
         OrderM order = new OrderM();
     }

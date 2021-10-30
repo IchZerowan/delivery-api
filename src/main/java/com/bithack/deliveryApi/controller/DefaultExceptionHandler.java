@@ -1,5 +1,6 @@
 package com.bithack.deliveryApi.controller;
 
+import com.bithack.deliveryApi.dao.DifferentCompaniesException;
 import com.bithack.deliveryApi.dao.EmptyOrderException;
 import com.bithack.deliveryApi.dao.ObjectNotFoundException;
 import com.bithack.deliveryApi.model.ExceptionInfo;
@@ -23,7 +24,7 @@ public class DefaultExceptionHandler {
 
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(EmptyOrderException.class)
+    @ExceptionHandler({EmptyOrderException.class, DifferentCompaniesException.class})
     @ResponseBody
     ExceptionInfo handleBadRequest(HttpServletRequest req, Exception ex) {
         return new ExceptionInfo(400, ex);

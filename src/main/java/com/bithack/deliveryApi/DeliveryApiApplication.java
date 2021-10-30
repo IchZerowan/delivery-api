@@ -38,17 +38,27 @@ public class DeliveryApiApplication {
 	@Bean
 	CommandLineRunner initDeliveries(){
 		return args -> {
-			Company company = new Company("Da!Bro", "ресторан");
-			companyRepository.save(company);
+			Company company1 = new Company("Da!Bro", "ресторан");
+			companyRepository.save(company1);
 
-			Category category = new Category("Burgers", company);
-			categoryRepository.save(category);
+			Category category1 = new Category("Burgers", company1);
+			categoryRepository.save(category1);
 
-			Dish dish = new Dish("Cheeseburger", "cheeseburger.jpg", "Tasty Cheeseburger", 50d, category);
-			dishRepository.save(dish);
+			Dish dish1 = new Dish("Cheeseburger", "cheeseburger.jpg", "Tasty Cheeseburger", 50d, category1);
+			dishRepository.save(dish1);
 
-			OrderM orderM = new OrderM(100d, "+380999999999", "Ihor");
-			orderRepository.save(orderM);
+
+			Company company2 = new Company("ХОЧУ ПІЦУ", "піцерія");
+			companyRepository.save(company2);
+
+			Category category2 = new Category("Pizzas", company2);
+			categoryRepository.save(category2);
+
+			Dish dish2 = new Dish("Margherita", "margherita.jpg", "Cheese Pizza", 70d, category2);
+			dishRepository.save(dish2);
+
+//			OrderM orderM = new OrderM(100d, "+380999999999", "Ihor");
+//			orderRepository.save(orderM);
 		};
 	}
 }

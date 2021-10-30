@@ -1,7 +1,7 @@
 package com.bithack.deliveryApi.model;
 
 public class OrderDishDto {
-    private int dishId;
+    private Long dishId;
     private int count;
 
     public int getCount() {
@@ -12,11 +12,11 @@ public class OrderDishDto {
         this.count = count;
     }
 
-    public int getDish() {
+    public Long getDishId() {
         return dishId;
     }
 
-    public void setDish(int dish) {
-        this.dishId = dish;
+    public void setDishId(Long dishId) {
+        this.dishId = dishId;
     }
 }
