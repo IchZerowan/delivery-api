@@ -1,4 +1,5 @@
 package com.bithack.deliveryApi;
+
 import com.bithack.deliveryApi.model.Category;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
@@ -20,13 +21,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class CategoryTest {
+public class DishTest {
     @Autowired
     private MockMvc mvc;
 
     @Test
-    public void getCategories() throws Exception{
-        MvcResult result = mvc.perform(MockMvcRequestBuilders.get("/api/categories?company_id=1").accept(MediaType.APPLICATION_JSON))
+    public void getDishes() throws Exception{
+        MvcResult result = mvc.perform(MockMvcRequestBuilders.get("/api/dishes?category_id=1").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk()).andReturn();
         String content = result.getResponse().getContentAsString();
         assertThat(isJSONValid(content));
@@ -34,31 +35,31 @@ public class CategoryTest {
         JSONArray array = (JSONArray) parser.parse(content);
         JSONObject object = (JSONObject) array.get(0);
 
-        MvcResult secondResult = mvc.perform(MockMvcRequestBuilders.get("/api/categories/" + object.getAsString("id")).accept(MediaType.APPLICATION_JSON))
+        MvcResult secondResult = mvc.perform(MockMvcRequestBuilders.get("/api/dishes/" + object.getAsString("id")).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk()).andReturn();
     }
 
     @Test
-    public void categoriesFormatExceptionWhileGettingFromCompany() throws Exception{
-        mvc.perform(MockMvcRequestBuilders.get("/api/categories?company_id=SSSS").accept(MediaType.APPLICATION_JSON))
+    public void dishesFormatExceptionWhileGettingFromCategory() throws Exception{
+        mvc.perform(MockMvcRequestBuilders.get("/api/dishes?category_id=SSSS").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
-    public void categoriesBadRequestExceptionWhileGettingFromCompany() throws Exception{
-        mvc.perform(MockMvcRequestBuilders.get("/api/categories?some_command=1").accept(MediaType.APPLICATION_JSON))
+    public void dishesBadRequestExceptionWhileGettingFromCategory() throws Exception{
+        mvc.perform(MockMvcRequestBuilders.get("/api/dishes?some_command=1").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
-    public void categoriesFormatException() throws Exception{
-        mvc.perform(MockMvcRequestBuilders.get("/api/categories/SSSSS").accept(MediaType.APPLICATION_JSON))
+    public void dishesFormatException() throws Exception{
+        mvc.perform(MockMvcRequestBuilders.get("/api/dishes/SSSSS").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
-    public void categoriesNotFoundException() throws Exception{
-        mvc.perform(MockMvcRequestBuilders.get("/api/categories/124").accept(MediaType.APPLICATION_JSON))
+    public void dishesNotFoundException() throws Exception{
+        mvc.perform(MockMvcRequestBuilders.get("/api/dishes/124").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
 
