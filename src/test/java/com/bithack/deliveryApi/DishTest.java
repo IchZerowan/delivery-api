@@ -1,12 +1,10 @@
 package com.bithack.deliveryApi;
 
-import com.bithack.deliveryApi.model.Category;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import net.minidev.json.parser.JSONParser;
 
 import net.minidev.json.parser.ParseException;
-import org.json.JSONException;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

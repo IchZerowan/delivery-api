@@ -29,14 +29,14 @@ public class CompanyTest {
     }
 
     @Test
-    public void testNotExistingCompany() throws Exception{
+    public void testNoSuchCompanyException() throws Exception{
         mvc.perform(MockMvcRequestBuilders.get("/api/companies/123124124").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
 
     }
 
     @Test
-    public void testNotNumericFormat() throws Exception{
+    public void testNotNumericFormatException() throws Exception{
         mvc.perform(MockMvcRequestBuilders.get("/api/companies/SSSSS").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
