@@ -1,6 +1,8 @@
 package com.bithack.deliveryApi;
 
+import com.bithack.deliveryApi.dao.CategoryRepository;
 import com.bithack.deliveryApi.dao.CompanyRepository;
+import com.bithack.deliveryApi.model.Category;
 import com.bithack.deliveryApi.model.Company;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -16,6 +18,9 @@ public class DeliveryApiApplication {
 	@Autowired
 	CompanyRepository companyRepository;
 
+	@Autowired
+	CategoryRepository categoryRepository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(DeliveryApiApplication.class, args);
 	}
@@ -25,6 +30,9 @@ public class DeliveryApiApplication {
 		return args -> {
 			Company example = new Company("Da!Bro", "ресторан");
 			companyRepository.save(example);
+
+			Category category = new Category("Burgers", example);
+			categoryRepository.save(category);
 		};
 	}
 }
