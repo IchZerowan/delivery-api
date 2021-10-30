@@ -1,9 +1,6 @@
 package com.bithack.deliveryApi.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Category {
@@ -12,6 +9,10 @@ public class Category {
     private Long id;
 
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
 
     public Category(){}
 
