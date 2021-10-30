@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.parser.Entity;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +31,7 @@ public class OrderController {
     }
 
     @PostMapping("")
-    ResponseEntity<OrderM> create(@RequestBody OrderDto orderDto){
+    ResponseEntity<OrderM> create(@Valid @RequestBody OrderDto orderDto){
         List<OrderDishDto> dishes = orderDto.getDishes();
         if(dishes.size() < 1){
             throw new EmptyOrderException();
