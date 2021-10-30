@@ -1,5 +1,7 @@
 package com.bithack.deliveryApi.controller;
 
+import com.bithack.deliveryApi.dao.DifferentCompaniesException;
+import com.bithack.deliveryApi.dao.EmptyOrderException;
 import com.bithack.deliveryApi.dao.ObjectNotFoundException;
 import com.bithack.deliveryApi.model.ExceptionInfo;
 import org.springframework.http.HttpStatus;
@@ -18,5 +20,13 @@ public class DefaultExceptionHandler {
     @ResponseBody
     ExceptionInfo handleNotFound(HttpServletRequest req, Exception ex) {
         return new ExceptionInfo(404, ex);
+    }
+
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler({EmptyOrderException.class, DifferentCompaniesException.class})
+    @ResponseBody
+    ExceptionInfo handleBadRequest(HttpServletRequest req, Exception ex) {
+        return new ExceptionInfo(400, ex);
     }
 }
