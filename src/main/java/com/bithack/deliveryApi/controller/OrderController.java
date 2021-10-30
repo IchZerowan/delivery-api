@@ -3,6 +3,8 @@ package com.bithack.deliveryApi.controller;
 import com.bithack.deliveryApi.dao.*;
 import com.bithack.deliveryApi.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.parser.Entity;
@@ -28,7 +30,7 @@ public class OrderController {
     }
 
     @PostMapping("")
-    void create(@RequestBody OrderDto orderDto){
+    ResponseEntity<OrderM> create(@RequestBody OrderDto orderDto){
         List<OrderDishDto> dishes = orderDto.getDishes();
         if(dishes.size() < 1){
             throw new EmptyOrderException();
@@ -75,5 +77,6 @@ public class OrderController {
         }
 
         order.setTotal(total);
+        return new ResponseEntity<>(repository.save(order), HttpStatus.CREATED);
     }
 }
