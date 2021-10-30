@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Place {
+public class Company {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
@@ -14,7 +14,9 @@ public class Place {
     private String name;
     private String description;
 
-    public Place(String name, String description) {
+    public Company() { }
+
+    public Company(String name, String description) {
         this.name = name;
         this.description = description;
     }
