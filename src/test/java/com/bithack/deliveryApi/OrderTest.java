@@ -52,6 +52,18 @@ public class OrderTest {
     }
 
     @Test
+    public void EmptyNameException() throws  Exception {
+        MvcResult putResult = mvc.perform(MockMvcRequestBuilders.post("/api/orders").content("{\"phoneNumber\":\"+380999999999\",\"clientName\":\"\",\"dishes\":[{\"dishId\":1,\"count\":2},{\"dishId\":2,\"count\":2}]}").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest()).andReturn();
+    }
+
+    @Test
+    public void EmptyPhoneException() throws  Exception {
+        MvcResult putResult = mvc.perform(MockMvcRequestBuilders.post("/api/orders").content("{\"phoneNumber\":\"\",\"clientName\":\"Ihor\",\"dishes\":[{\"dishId\":1,\"count\":2},{\"dishId\":2,\"count\":2}]}").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest()).andReturn();
+    }
+
+    @Test
     public void dupicateDishException() throws  Exception{
         MvcResult putResult = mvc.perform(MockMvcRequestBuilders.post("/api/orders").content("{\"phoneNumber\":\"+380999999999\",\"clientName\":\"Ihor\",\"dishes\":[{\"dishId\":2,\"count\":2},{\"dishId\":2,\"count\":2}]}").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest()).andExpect(content().string(equalTo("{\"status\":400,\"error\":\"Duplicate dish id found: 2\"}"))).andReturn();
