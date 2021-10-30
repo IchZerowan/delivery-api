@@ -14,8 +14,15 @@ GET method returns for you list of all companies
 http://server:80/api/companies
 ```
 **Response**
-> [{"id":1,"name":"Da!Bro","description":"ресторан"}]
-
+```json
+[
+   {
+      "id":1,
+      "name":"Da!Bro",
+      "description":"ресторан"
+   }
+]
+```
 ### Get company by id
 GET method returns for you information for company with your id,  *honey*
 
@@ -24,7 +31,15 @@ GET method returns for you information for company with your id,  *honey*
 http://server:80/api/companies?company_id=1
 ```
 **Response**
-> [{"id":1,"name":"Da!Bro","description":"ресторан"}]
+```json
+[
+   {
+      "id":1,
+      "name":"Da!Bro",
+      "description":"ресторан"
+   }
+]
+```
 
 ### Get categories
 GET method returns for you all categories for your company ID
@@ -34,7 +49,14 @@ GET method returns for you all categories for your company ID
 http://server:80/api/categories?company_id=1
 ```
 **Response**
-> [{"id":1,"name":"Burgers"}]
+```json
+[
+   {
+      "id":1,
+      "name":"Burgers"
+   }
+]
+```
 
 ### Get category info by ID
 GET method returns for you info about your category 
@@ -44,7 +66,12 @@ GET method returns for you info about your category
 http://server:80/api/categories/1
 ```
 **Response**
-> {"id":1,"name":"Burgers"}
+```json
+{
+   "id":1,
+   "name":"Burgers"
+}
+```
 
 ### Get dish by category ID
 GET method returns for you all dished for your category ID
@@ -54,8 +81,17 @@ GET method returns for you all dished for your category ID
 http://server:80/api/dishes?category_id=1
 ```
 **Response**
-> [{"id":1,"name":"Cheeseburger","image":"cheeseburger.jpg","description":"Tasty Cheeseburger","price":50.0}]
-
+```json
+[
+   {
+      "id":1,
+      "name":"Cheeseburger",
+      "image":"cheeseburger.jpg",
+      "description":"Tasty Cheeseburger",
+      "price":50.0
+   }
+]
+```
 
 ### Get dish by ID
 GET method returns for you all dished for your category ID
@@ -65,7 +101,15 @@ GET method returns for you all dished for your category ID
 http://server:80/api/dishes/1
 ```
 **Response**
-> {"id":1,"name":"Cheeseburger","image":"cheeseburger.jpg","description":"Tasty Cheeseburger","price":50.0}
+```json
+{
+   "id":1,
+   "name":"Cheeseburger",
+   "image":"cheeseburger.jpg",
+   "description":"Tasty Cheeseburger",
+   "price":50.0
+}
+```
 
 ### Create order 
 POST method adds new order
@@ -75,14 +119,56 @@ POST method adds new order
 http://server:80/api/orders
 ```
 
-**Params**
-```
-param1 = 
-param2 = 
-param3 = 
+**Body**
+```json
+{
+    "phoneNumber": "+380999999999",
+    "clientName": "Ihor",
+    "dishes": [
+        {
+            "dishId": 2,
+            "count": 2
+        },
+        {
+            "dishId": 3,
+            "count": 2
+        }
+    ]
+}
 ```
 **Response**
-> RESPONSE
+```json
+{
+    "id": 1,
+    "total": 220.0,
+    "phoneNumber": "+380999999999",
+    "clientName": "Ihor",
+    "dishes": [
+        {
+            "dish": {
+                "id": 2,
+                "name": "Margherita",
+                "image": "margherita.jpg",
+                "description": "Cheese Pizza",
+                "price": 70.0
+            },
+            "price": 70.0,
+            "count": 2
+        },
+        {
+            "dish": {
+                "id": 3,
+                "name": "Hawaii",
+                "image": "hawaii.jpg",
+                "description": "Hawaii Pizza",
+                "price": 80.0
+            },
+            "price": 80.0,
+            "count": 1
+        }
+    ]
+}
+```
 
 ### Get order by ID 
 GET method returns for you info about your order
@@ -92,8 +178,9 @@ http://server:80/api/orders/1
 ```
 
 **Response**
-> {"id":1,"amount":100.0,"phoneNumber":"+380999999999","clientName":"Ihor","dishes":[]}
-
+```json
+{"id":1,"amount":100.0,"phoneNumber":"+380999999999","clientName":"Ihor","dishes":[]}
+```
 
 ## HOW TO DEPLOY
 
