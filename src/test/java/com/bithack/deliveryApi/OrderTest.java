@@ -27,7 +27,7 @@ public class OrderTest {
 
     @Test
     public void putOrder() throws Exception{
-        MvcResult result = mvc.perform(MockMvcRequestBuilders.post("/api/orders").content("{\"phoneNumber\":\"+380999999999\",\"clientName\":\"Ihor\",\"dishes\":[{\"dishId\":2,\"count\":2},{\"dishId\":3,\"count\":2}]}").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+        MvcResult result = mvc.perform(MockMvcRequestBuilders.post("/api/orders").content("{\"phoneNumber\":\"+380999999999\",\"clientName\":\"Ihor\",\"dishes\":[{\"dishId\":1,\"count\":2},{\"dishId\":2,\"count\":2}]}").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated()).andReturn();
     }
 
@@ -59,7 +59,7 @@ public class OrderTest {
 
     @Test
     public void dishesFromDifferentCompaniesException() throws  Exception{
-        MvcResult putResult = mvc.perform(MockMvcRequestBuilders.post("/api/orders").content("{\"phoneNumber\":\"+380999999999\",\"clientName\":\"Ihor\",\"dishes\":[{\"dishId\":1,\"count\":2},{\"dishId\":2,\"count\":2}]}").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+        MvcResult putResult = mvc.perform(MockMvcRequestBuilders.post("/api/orders").content("{\"phoneNumber\":\"+380999999999\",\"clientName\":\"Ihor\",\"dishes\":[{\"dishId\":1,\"count\":2},{\"dishId\":4,\"count\":2}]}").contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest()).andExpect(content().string(equalTo("{\"status\":400,\"error\":\"Order should contain dishes from a single company, found dishes from companies 1 and 2\"}"))).andReturn();
     }
 

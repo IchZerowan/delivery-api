@@ -55,7 +55,7 @@ public class DeliveryApiApplication {
 			categoryRepository.save(category11);
 
 			Dish dish111 = new Dish("Chicken Shavarma XL", "chicken-shavarma-xl.png", "М`ясо курочки, капуста, огірок, помідор, трішки корейської моркви, соус білий з часником, соус BBQ.", 75d, category11);
-			dishRepository.save(dish11);
+			dishRepository.save(dish111);
 
 			Company company2 = new Company("ХОЧУ ПІЦУ", "піцерія");
 			companyRepository.save(company2);
